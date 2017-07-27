@@ -23,9 +23,18 @@ function broadcast(data) {
 }
 
 function handleMessage(data) {
-  const sharedContent = JSON.parse(data);
-  sharedContent.id = uuidv1();
-  broadcast(sharedContent);
+  const message = JSON.parse(data);
+  message.id = uuidv1();
+  switch(message.type) {
+  case 'postMessage':
+    message.type = 'incomingMessage';
+    broadcast(message);
+    break;
+  case 'postNotification':
+    message.type = 'incomingNotification';
+    broadcast(message);
+    break;
+  }
 }
 
 function handleConnection(client) {

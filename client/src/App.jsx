@@ -20,7 +20,8 @@ class App extends Component {
     if (event.key === 'Enter') {
       const message = {
         username: this.state.currentUser.name,
-        content: event.target.value
+        content: event.target.value,
+        type: 'postMessage'
       }
       this.socket.send(JSON.stringify(message))
       event.target.value = '';
@@ -34,14 +35,30 @@ class App extends Component {
     })
 
     this.socket.onmessage = (event) => {
-      const message = event.data;
-      let newMessage = JSON.parse(message);
-      let messages = this.state.messages.concat(newMessage);
-      this.setState({messages: messages});
+      const message = JSON.parse(event.data);
+      switch(message.type) {
+      case 'incomingMessage':
+        let newMessage = this.state.messages.concat(message);
+        this.setState({messages: newMessage});
+        break;
+      case 'incomingNotification':
+        let newNotification = this.state.messages.concat(message);
+        this.setState({messages: newNotification});
+        break;
+      default:
+        throw new Error('Unknown event type ' + message.type);
+      }
     }
   }
 
   changeUser(event) {
+    if (event.key === 'Enter') {
+      const user = {
+        content: `${this.state.currentUser.name} has changed their name to ${event.target.value}`,
+        type: 'postNotification'
+      }
+      this.socket.send(JSON.stringify(user))
+    }
     this.setState({
       currentUser: { name: event.target.value }
     });

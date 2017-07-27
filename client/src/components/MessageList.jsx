@@ -10,6 +10,7 @@ class MessageList extends Component {
         key={ message.id }
         username={ message.username }
         content={ message.content}
+        type={ message.type }
         />
     });
 
