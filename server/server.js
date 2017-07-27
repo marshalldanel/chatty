@@ -34,12 +34,19 @@ function handleMessage(data) {
     message.type = 'incomingNotification';
     broadcast(message);
     break;
+  default:
+    throw new Error('Unknown event type ' + message.type);
   }
 }
 
 function handleConnection(client) {
   console.log('New client connected!');
   console.log('We are at ' + wss.clients.size + ' clients!');
+  const roomSize = {
+    type: 'usersInRoom',
+    content: `Total Users Online: ${wss.clients.size}`
+  };
+  client.send(JSON.stringify(roomSize));
   client.on('message', handleMessage);
 }
 
