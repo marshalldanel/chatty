@@ -5,10 +5,10 @@ class NavBar extends Component {
     console.log("<NavBar />");
 
     return (
-        <nav className="navbar">
-          <a href="/" className="navbar-brand">Chatty</a>
-
-        </nav>
+      <nav className="navbar">
+        <a href="/" className="navbar-brand">Chatty</a>
+        <span className='onlineUsers'>{ this.props.users }</span>
+      </nav>
     );
   }
 }
