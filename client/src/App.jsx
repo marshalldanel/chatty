@@ -4,45 +4,27 @@ import MessageList from './components/MessageList.jsx';
 
 class App extends Component {
     
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.socket;
-
     this.state = {
-      currentUser: {name: 'Bob'}, // optional. if currentUser is not defined, it means the user is Anonymous
-      messages: [
-        {
-          id: 1,
-          username: 'Bob',
-          content: 'Has anyone seen my marbles?',
-        },
-        {
-          id: 2,
-          username: 'Anonymous',
-          content: 'No, I think you lost them. You lost your marbles Bob. You lost them for good.'
-        },
-        {
-          id: 3,
-          username: 'Bob',
-          content: 'Oh wait, I put them in your food yesterday.'
-        }
-      ], 
+      currentUser: {name: 'Anonymous' }, // optional. if currentUser is not defined, it means the user is Anonymous
+      messages: []
+      
     }
     this.onInput = this.onInput.bind(this);
-    
+    this.changeUser = this.changeUser.bind(this);
   }
 
   onInput(event) {
     if (event.key === 'Enter') {
       const message = {
-        id: Math.random(),
         username: this.state.currentUser.name,
         content: event.target.value
       }
-      let messages = this.state.messages.concat(message);
-      this.setState({ messages });
+      this.socket.send(JSON.stringify(message))
       event.target.value = '';
-    }  
+    }
   }
 
   componentDidMount() {
@@ -50,9 +32,20 @@ class App extends Component {
     this.socket.onopen = (() => {
       console.log('Connected to server');
     })
+
+    this.socket.onmessage = (event) => {
+      const message = event.data;
+      let newMessage = JSON.parse(message);
+      let messages = this.state.messages.concat(newMessage);
+      this.setState({messages: messages});
+    }
   }
-  
-    
+
+  changeUser(event) {
+    this.setState({
+      currentUser: { name: event.target.value }
+    });
+  }
 
   render() {
 
@@ -62,7 +55,7 @@ class App extends Component {
 
         <MessageList messages={ this.state.messages } />
 
-        <ChatBar currentUser={ this.state.currentUser } onInput={ this.onInput } />
+        <ChatBar currentUser={ this.state.currentUser.name } onInput={ this.onInput } changeUser={ this.changeUser}/>
         
       </div>
       
