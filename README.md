@@ -12,9 +12,9 @@ Home Page - The Room
 
 - [React](https://facebook.github.io/react/)
 
-- [Webpack](https://webpack.github.io/) with [babel](https://github.com/babel/babel-loader), [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html), ES6 and[webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+- [Webpack](https://webpack.github.io/) with [babel](https://github.com/babel/babel-loader), [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html), ES6 and [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 
-- Websockets using [Node](https://www.npmjs.com/package/websocket) package ws on the server side, and native WebSocket on the client side
+- Websockets using [Node](https://www.npmjs.com/package/websocket) on the server side, and native WebSocket on the client side
 
 ## Versioning
 
@@ -30,10 +30,6 @@ Home Page - The Room
 4. Go to <http://localhost:8080/> in your browser.
 5. Fantastic. Go send some events to your friends, or your parents, or some strangers.
 
-### Authors
-
-- [Marshall Danel](https://github.com/marshalldanel/)
-
 ### Contributing
 
 1. Fork it (<https://github.com/yourname/yourproject/fork>)
@@ -42,6 +38,10 @@ Home Page - The Room
 4. Push to the branch (`git push origin feature/stuff`)
 5. Create a new Pull Request
 
+### Authors
+
+- [Marshall Danel](https://github.com/marshalldanel/)
+
 ### Acknowledgments
 
-- Free wifi from the folks at [Lighthouse Labs](https://www.lighthouselabs.ca/)
+- The folks at [Lighthouse Labs](https://www.lighthouselabs.ca/) for their free and typically fast wifi
