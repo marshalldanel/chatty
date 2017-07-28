@@ -1,18 +1,20 @@
-Chatty (Under construction)
-=====================
+# Chatty
 
 Full stack, real time web app that allows users to communicate with each other without having to register accounts.
 
 ## Screenshots
 
-* Coming soon...
+Home Page - The Room
 
-## Dependencies
+![Home](https://github.com/marshalldanel/chatty/blob/master/client/docs/homepg.png?raw=true)
 
- React
-* Webpack
-* [babel-loader](https://github.com/babel/babel-loader)
-* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+## Project Stack
+
+- [React](https://facebook.github.io/react/)
+
+- [Webpack](https://webpack.github.io/) with [babel](https://github.com/babel/babel-loader), [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html), ES6 and[webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+
+- Websockets using [Node](https://www.npmjs.com/package/websocket) package ws on the server side, and native WebSocket on the client side
 
 ## Versioning
 
@@ -30,7 +32,7 @@ Full stack, real time web app that allows users to communicate with each other w
 
 ### Authors
 
-[https://github.com/marshalldanel](https://github.com/marshalldanel/)
+- [Marshall Danel](https://github.com/marshalldanel/)
 
 ### Contributing
 
@@ -39,3 +41,7 @@ Full stack, real time web app that allows users to communicate with each other w
 3. Commit your changes (`git commit -am 'Add some stuff'`)
 4. Push to the branch (`git push origin feature/stuff`)
 5. Create a new Pull Request
+
+### Acknowledgments
+
+- Free wifi from the folks at [Lighthouse Labs](https://www.lighthouselabs.ca/)
