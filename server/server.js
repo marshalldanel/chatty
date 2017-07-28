@@ -67,3 +67,67 @@ function handleConnection(client) {
 }
 
 wss.on('connection', handleConnection);
+
+
+//  const message = JSON.parse(data);
+//     message.id = uuidV1();
+//     if (message.content[0] == "/") {
+//       let parts = message.content.split(" ");
+//       let cmd = parts.shift().replace("/", "");
+//       switch(cmd) {
+//         case 'me':
+//           message.type = 'actionMessage';      
+//           message.content = parts.join(' ');
+//           break;
+//         case 'giphy':
+//           message.type = 'gifMessage';
+//           let query = "";
+//           let endpoint = "random";
+
+//           if (parts.length) {
+//             query = parts.join("+");
+//             endpoint = "search";
+//           } 
+
+//           getGif(endpoint, query, message, wss); 
+//           break;
+//         default:
+//           message.type = 'errorMessage';
+//           message.content = 'Invalid command';
+//       }
+//     } else {
+//       message.type = 'textMessage';
+//     }
+//     //Don't want it to send here if it's a gif, getGif will send it
+//     if (message.type != 'gifMessage') {
+//       wss.broadcast(JSON.stringify(message));
+//     }
+
+
+//     //Our custom callback functions for handling Giphy data
+// function handleSearch(results, message, wss) {
+//   let gif = results.data[0];
+//   message.content = gif.images.fixed_height.url;
+//   wss.broadcast(JSON.stringify(message));
+// }
+
+// function handleRandom(results, message, wss) {
+//   message.content = results.data.image_url;
+//   wss.broadcast(JSON.stringify(message));
+// }
+
+// function getGif(endpoint, query, message, wss) {
+//   if (endpoint == 'search') {
+//     let url = `http://api.giphy.com/v1/gifs/search?api_key=2666876f73f549b9a8ac8bbc3c67bc6a&rating=pg&q=${query}`;
+//     request(url, function(err, response, body) {
+//       body = JSON.parse(body);
+//       handleSearch(body, message, wss);
+//     });
+//   } else {
+//     let url = "http://api.giphy.com/v1/gifs/random?api_key=2666876f73f549b9a8ac8bbc3c67bc6a&rating=pg";
+//     request(url, function(err, response, body) {
+//       body = JSON.parse(body);
+//       handleRandom(body, message, wss);
+//     });
+//   }
+// }

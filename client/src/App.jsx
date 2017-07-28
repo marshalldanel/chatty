@@ -23,7 +23,8 @@ class App extends Component {
       const message = {
         username: this.state.currentUser.name,
         content: event.target.value,
-        type: 'postMessage'
+        type: 'postMessage',
+        userColor: this.state.userColor
       }
       this.socket.send(JSON.stringify(message))
       event.target.value = '';

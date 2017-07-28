@@ -11,7 +11,7 @@ class MessageList extends Component {
         username={ message.username }
         content={ message.content}
         type={ message.type }
-        color={ this.props.userColor }
+        color={ message.userColor }
         />
     });
 
