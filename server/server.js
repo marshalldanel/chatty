@@ -22,8 +22,18 @@ function broadcast(data) {
   }
 }
 
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 function handleMessage(data) {
   const message = JSON.parse(data);
+  console.log('message server: ', message);
   message.id = uuidv1();
   switch(message.type) {
   case 'postMessage':
@@ -42,6 +52,12 @@ function handleMessage(data) {
 function handleConnection(client) {
   console.log('New client connected!');
   console.log('We are at ' + wss.clients.size + ' clients!');
+  const randColor = {
+    type: 'userColor',
+    color: getRandomColor()
+  };
+  console.log(randColor);
+  client.send(JSON.stringify(randColor));
   const roomSize = {
     type: 'usersInRoom',
     content: `Total Users Online: ${wss.clients.size}`

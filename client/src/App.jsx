@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       currentUser: {name: 'Anonymous' }, // optional. if currentUser is not defined, it means the user is Anonymous
       messages: [],
-      users: ''
+      users: '',
+      userColor: ''
     }
     this.onInput = this.onInput.bind(this);
     this.changeUser = this.changeUser.bind(this);
@@ -37,14 +38,10 @@ class App extends Component {
 
     this.socket.onmessage = (event) => {
       const message = JSON.parse(event.data);
-      console.log(event.data);
-      console.log('message: ', message);
-      console.log('type: ', typeof message.type);
+      console.log('message client: ', message);
       switch(message.type) {
       case 'incomingMessage':
-        console.log('message type:', message.type);
         let newMessage = this.state.messages.concat(message);
-        console.log(newMessage);
         this.setState({ messages: newMessage });
         break;
       case 'incomingNotification':
@@ -54,6 +51,11 @@ class App extends Component {
       case 'usersInRoom':
         let usersOnline = message.content;
         this.setState({ users: usersOnline })
+        break;
+      case 'userColor':
+        let color = message.color;
+        console.log('cololr', color);
+        this.setState({ userColor: color});
         break;
       default:
         throw new Error('Unknown event type ' + message.type);
@@ -82,9 +84,9 @@ class App extends Component {
 
         <NavBar users={ this.state.users } />
         
-        <MessageList messages={ this.state.messages } />
+        <MessageList messages={ this.state.messages } userColor={ this.state.userColor } />
 
-        <ChatBar currentUser={ this.state.currentUser.name } onInput={ this.onInput } changeUser={ this.changeUser}/>
+        <ChatBar currentUser={ this.state.currentUser.name } onInput={ this.onInput } changeUser={ this.changeUser} />
         
       </div>
       
