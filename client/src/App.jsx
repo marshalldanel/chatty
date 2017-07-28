@@ -61,6 +61,7 @@ class App extends Component {
       default:
         throw new Error('Unknown event type ' + message.type);
       }
+      window.scrollTo(0, document.body.scrollHeight);
     }
   }
 
