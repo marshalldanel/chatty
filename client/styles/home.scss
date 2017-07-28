@@ -7,7 +7,7 @@ body {
     }
 
     .chatbar {
-      background: #008080;
+      background: linear-gradient(to left, #008080, midnightblue);
       border-top: 1px solid black;
       bottom: 0;
       display: flex;
@@ -62,8 +62,9 @@ body {
     }
 
     .navbar {
-      background: #008080;
+      background: linear-gradient(to right, #008080, midnightblue);
       border-bottom: 1px solid black;
+      color: #dbfffc;
       height: 60px;
       left: 0;
       padding: 0 10px;

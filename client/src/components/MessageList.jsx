@@ -1,10 +1,10 @@
+
 import React, {Component} from 'react';
 import Message from './Message.jsx';
 
 class MessageList extends Component {
   render() {
-    console.log("<MessageList />");
-    console.log(this.props.userColor);
+
     const messages = this.props.messages.map(message => {
       return <Message 
         key={ message.id }
@@ -16,13 +16,11 @@ class MessageList extends Component {
     });
 
     return (
-      <div className="messages">
-        
+      <div className='messages'>
         { messages }
-
       </div>
     );
   }
 }
-export default MessageList;
 
+export default MessageList;
