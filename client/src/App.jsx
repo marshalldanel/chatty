@@ -58,11 +58,14 @@ class App extends Component {
       case 'incomingNotification':
         newState = { messages: this.state.messages.concat(message) }
         break;
-      case 'usersInRoom':
-        newState = { usersOnline: message.content }
+      case 'incomingImage':
+        newState = { messages: this.state.messages.concat(message) }
         break;
       case 'userColor':
         newState = { userColor: message.color }
+        break;
+      case 'usersInRoom':
+        newState = { usersOnline: message.content }
         break;
       default:
         throw new Error('Unknown event type ' + message.type);

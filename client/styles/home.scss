@@ -35,6 +35,13 @@ body {
       flex: 2;
     }
 
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 60%;
+      max-height: 60%;
+    }
+
     .message {
       display: flex;
       padding: 5px;
